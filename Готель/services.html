@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Послуги - Готелі України</title>
+    <style>
+        /* Глобальні стилі */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        /* Заголовок */
+        header {
+            background-color: #003366;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        header .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        header .logo img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        header .logo h1 {
+            font-size: 22px;
+        }
+
+        header nav ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+            padding: 0;
+        }
+
+        header nav ul li {
+            display: inline;
+        }
+
+        header nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        header nav ul li a:hover {
+            color: #ff5722;
+        }
+
+        header .auth-buttons button {
+            padding: 10px 20px;
+            font-size: 14px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        header .auth-buttons .signup {
+            background-color: #ff5722;
+            color: white;
+        }
+
+        header .auth-buttons .login {
+            background-color: white;
+            color: #003366;
+            border: 1px solid #003366;
+        }
+
+        header .auth-buttons .signup:hover {
+            background-color: #ff3d00;
+        }
+
+        header .auth-buttons .login:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Основний контент */
+        .container {
+            padding: 30px;
+        }
+
+        .container h2 {
+            font-size: 28px;
+            color: #003366;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .services {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .service {
+            flex: 1 1 calc(33.333% - 20px);
+            background: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .service img {
+            width: 50px;
+            margin-bottom: 15px;
+        }
+
+        .service h3 {
+            font-size: 18px;
+            color: #003366;
+            margin-bottom: 10px;
+        }
+
+        .service p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* Додаткові послуги */
+        .additional-services {
+            margin-top: 40px;
+        }
+
+        .additional-services h3 {
+            font-size: 22px;
+            color: #003366;
+            margin-bottom: 20px;
+        }
+
+        .additional-services .additional {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .additional .item {
+            flex: 1 1 calc(33.333% - 20px);
+            background: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .additional .item img {
+            width: 100%;
+            max-width: 200px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .additional .item p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* Знижки та акції */
+        .offers {
+            margin-top: 40px;
+        }
+
+        .offers h3 {
+            font-size: 22px;
+            color: #003366;
+            margin-bottom: 20px;
+        }
+
+        .offer {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+        }
+
+        .offer h4 {
+            font-size: 18px;
+            color: #003366;
+            margin-bottom: 10px;
+        }
+
+        .offer p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* Персонал */
+        .staff-section {
+            margin-top: 40px;
+        }
+
+        .staff-section h3 {
+            font-size: 22px;
+            color: #003366;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .staff {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .staff-member {
+            flex: 1 1 calc(33.333% - 20px);
+            background: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .staff-member img {
+            width: 100%;
+            max-width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+
+        .staff-member h4 {
+            font-size: 18px;
+            color: #003366;
+            margin-bottom: 10px;
+        }
+
+        .staff-member p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* Блок: Майбутні екскурсії */
+        .excursions {
+            margin-top: 40px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .excursions h3 {
+            font-size: 22px;
+            color: #003366;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .excursion {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .excursion img {
+            width: 200px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .excursion-info {
+            flex: 1;
+        }
+
+        .excursion-info h4 {
+            font-size: 18px;
+            color: #003366;
+            margin-bottom: 10px;
+        }
+
+        .excursion-info p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            background: #003366;
+            color: white;
+        }
+
+        footer a {
+            margin: 0 10px;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        /* Адаптивний дизайн */
+        @media (max-width: 768px) {
+            .services .service,
+            .additional .item,
+            .staff-member,
+            .excursion {
+                flex: 1 1 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+        }
+        /* Зворотній зв'язок */
+.feedback {
+    margin-top: 40px;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.feedback h3 {
+    font-size: 22px;
+    color: #003366;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.feedback p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.feedback form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.feedback .form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.feedback .form-group label {
+    font-size: 16px;
+    color: #003366;
+    margin-bottom: 8px;
+}
+
+.feedback .form-group input,
+.feedback .form-group select,
+.feedback .form-group textarea {
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feedback .form-group input:focus,
+.feedback .form-group select:focus,
+.feedback .form-group textarea:focus {
+    border-color: #ff5722;
+    box-shadow: 0px 0px 5px rgba(255, 87, 34, 0.5);
+    outline: none;
+}
+
+.feedback button {
+    padding: 12px 20px;
+    font-size: 16px;
+    color: white;
+    background-color: #003366;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.feedback button:hover {
+    background-color: #ff5722;
+}
+
+.feedback button:active {
+    background-color: #ff3d00;
+}
+
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <img src="фото/logo.png" alt="Логотип">
+            <h1>Готелі України</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Головна</a></li>
+                <li><a href="hotels.html">Готелі</a></li>
+                <li><a href="about.html">Про нас</a></li>
+            </ul>
+        </nav>
+        <div class="auth-buttons">
+            <button class="signup" onclick="window.location.href='regist.html'">Реєстрація</button>
+            <button class="login" onclick="window.location.href='open.html'">Увійти</button>
+        </div>
+    </header>
+
+    <!-- Основний контент -->
+    <div class="container">
+        <h2>Послуги</h2>
+        <div class="services">
+            <div class="service">
+                <img src="фото/breakfast.jpg" alt="Сніданок">
+                <h3>Сніданок</h3>
+                <p>Опис переваг сніданку для наших гостей.</p>
+            </div>
+            <div class="service">
+                <img src="фото/gym.jpg" alt="Тренажерний зал">
+                <h3>Тренажерний зал</h3>
+                <p>Опис переваг тренувань у нашому залі.</p>
+            </div>
+            <div class="service">
+                <img src="фото/transfer.jpg" alt="Трансфер">
+                <h3>Трансфер</h3>
+                <p>Опис трансферних послуг для наших гостей.</p>
+            </div>
+            <div class="service">
+                <img src="фото/cameras.jpg" alt="Камери схову">
+                <h3>Камери схову</h3>
+                <p>Опис послуг безпечного зберігання речей.</p>
+            </div>
+            <div class="service">
+                <img src="фото/tour.jpg" alt="Екскурсія">
+                <h3>Екскурсія</h3>
+                <p>Опис унікальних екскурсій для наших гостей.</p>
+            </div>
+            <div class="service">
+                <img src="фото/spa.jpg" alt="Спа-басейн">
+                <h3>Спа-басейн</h3>
+                <p>Опис релаксаційних послуг для наших гостей.</p>
+            </div>
+        </div>
+
+        <div class="additional-services">
+            <h3>Додаткові послуги:</h3>
+            <div class="additional">
+                <div class="item">
+                    <img src="фото/additional1.jpg" alt="Додаткова послуга-прання речей">
+                    <p>Прання речей.</p>
+                </div>
+                <div class="item">
+                    <img src="фото/additional2.jpg" alt="Додаткова послуга - портьє">
+                    <p>Портьє.</p>
+                </div>
+                <div class="item">
+                    <img src="фото/additional3.jpg" alt="Додаткова послуга - бронювання столиків,басейну і тд.">
+                    <p>Бронювання столиків, басейну і тд..</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Блок: Знижки та акції -->
+        <div class="offers">
+            <h3>Знижки та акції</h3>
+            <div class="offer">
+                <h4>Знижка 10% на довготривале проживання</h4>
+                <p>Забронюйте номер на 7 днів або більше і отримайте знижку 10% на загальну вартість проживання.</p>
+            </div>
+            <div class="offer">
+                <h4>Подарункові сертифікати</h4>
+                <p>Купуйте подарункові сертифікати на проживання в готелі та даруйте своїм близьким незабутні моменти.</p>
+            </div>
+            <div class="offer">
+                <h4>Безкоштовний трансфер для нових гостей</h4>
+                <p>При бронюванні номеру на 5 і більше діб надається безкоштовний трансфер з аеропорту чи вокзалу.</p>
+            </div>
+        </div>
+
+        <!-- Блок: Персонал -->
+        <div class="staff-section">
+            <h3>Наш персонал</h3>
+            <div class="staff">
+                <div class="staff-member">
+                    <img src="фото/staff1.jpg" alt="Персонал 1">
+                    <h4>Олена Петрівна</h4>
+                    <p>Менеджер з обслуговування клієнтів</p>
+                </div>
+                <div class="staff-member">
+                    <img src="фото/staff2.jpg" alt="Персонал 2">
+                    <h4>Марія Петрівна</h4>
+                    <p>Головний адміністратор</p>
+                </div>
+                <div class="staff-member">
+                    <img src="фото/staff3.jpg" alt="Персонал 3">
+                    <h4>Олександр Семенович</h4>
+                    <p>Шеф-кухар</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Блок: Майбутні екскурсії -->
+        <div class="excursions">
+            <h3>Майбутні екскурсії</h3>
+            <div class="excursion">
+                <img src="фото/excursion1.jpg" alt="Екскурсія по Києву">
+                <div class="excursion-info">
+                    <h4>Екскурсія по Києву</h4>
+                    <p>Захоплююча екскурсія по головним пам'яткам Києва: від Софіївського собору до Майдану Незалежності.</p>
+                    <p><strong>Дата:</strong> 15 травня 2025 року</p>
+                </div>
+            </div>
+            <div class="excursion">
+                <img src="фото/excursion2.jpg" alt="Екскурсія по Львову">
+                <div class="excursion-info">
+                    <h4>Екскурсія по Львову</h4>
+                    <p>Поглиблене знайомство з історією Львова, його старовинними вулицями та архітектурою.</p>
+                    <p><strong>Дата:</strong> 22 травня 2025 року</p>
+                </div>
+            </div>
+            <div class="excursion">
+                <img src="фото/excursion3.jpg" alt="Екскурсія по Карпатах">
+                <div class="excursion-info">
+                    <h4>Екскурсія по Карпатах</h4>
+                    <p>Похід в гори та знайомство з природою Карпат, відвідування мальовничих водоспадів та гірських озер.</p>
+                    <p><strong>Дата:</strong> 30 травня 2025 року</p>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- Зворотній зв'язок -->
+<div class="feedback">
+    <h3>Зворотній зв'язок по екскурсіях</h3>
+    <p>Ми завжди раді почути вашу думку! Якщо у вас є питання або ви хочете записатися на одну з екскурсій, заповніть форму нижче.</p>
+    <form action="send-feedback.php" method="POST">
+        <div class="form-group">
+            <label for="name">Ваше ім'я:</label>
+            <input type="text" id="name" name="name" required placeholder="Введіть ваше ім'я">
+        </div>
+        <div class="form-group">
+            <label for="email">Ваша електронна пошта:</label>
+            <input type="email" id="email" name="email" required placeholder="Введіть вашу електронну пошту">
+        </div>
+        <div class="form-group">
+            <label for="excursion">Оберіть екскурсію:</label>
+            <select id="excursion" name="excursion" required>
+                <option value="kyiv">Екскурсія по Києву</option>
+                <option value="lviv">Екскурсія по Львову</option>
+                <option value="carpathians">Екскурсія по Карпатах</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="message">Ваше повідомлення:</label>
+            <textarea id="message" name="message" rows="4" required placeholder="Напишіть ваше повідомлення..."></textarea>
+        </div>
+        <button type="submit">Відправити</button>
+    </form>
+</div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Готелі України</p>
+        <a href="#">Політика конфіденційності</a> | <a href="#">Контакти</a>
+    </footer>
+</body>
+</html>

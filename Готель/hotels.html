@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Готелі</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background-color: #003366;
+            color: white;
+            padding: 20px 0;
+            background-image: url('фото/фонове_зображення.jpg'); /* Фонове зображення */
+            background-size: cover;
+            background-position: center;
+        }
+
+        header .container {
+            width: 80%;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            gap: 15px;
+        }
+
+        nav ul li {
+            margin: 0;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .auth button {
+            background-color: #003366;
+            border: none;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .auth button:hover {
+            background-color: #ffffff;
+            color: #003366;
+            transform: scale(1.1);
+        }
+
+        /* Main Content Styles */
+        main {
+            width: 80%;
+            margin: 30px auto;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 30px;
+            color: #003366;
+        }
+
+        .hotel-list {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .hotel-item {
+            text-align: center;
+            flex: 1;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            background-color: #fff;
+            transition: transform 0.3s ease;
+        }
+
+        .hotel-item:hover {
+            transform: scale(1.05);
+        }
+
+        .hotel-item img {
+            width: 100%;
+            height: 200px; /* Встановлюємо висоту для зображень */
+            object-fit: cover; /* Забезпечуємо, щоб зображення не розтягувалося */
+        }
+
+        .hotel-item p {
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        .hotel-item .distance {
+            font-size: 14px;
+            color: #555;
+        }
+
+        /* Топові готелі */
+        .top-hotels {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #f1f1f1;
+            border-radius: 8px;
+        }
+
+        .top-hotels h2 {
+            text-align: center;
+            font-size: 24px;
+            color: #003366;
+            margin-bottom: 15px;
+        }
+
+        .top-hotels p {
+            text-align: center;
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 25px;
+        }
+
+        .top-hotels-list {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .top-hotel {
+            text-align: center;
+            flex: 1;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            padding: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .top-hotel:hover {
+            transform: scale(1.05);
+        }
+
+        .top-hotel img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .top-hotel h3 {
+            font-size: 18px;
+            color: #003366;
+            margin-top: 15px;
+        }
+
+        .top-hotel p {
+            font-size: 14px;
+            color: #777;
+        }
+
+        /* Міста в Україні */
+        .cities-container {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .city-box h3 {
+            text-align: center;
+            font-size: 24px;
+            color: #003366;
+            margin-bottom: 10px;
+        }
+
+        .city-box p {
+            text-align: center;
+            font-size: 16px;
+            color: #777;
+            margin-bottom: 20px;
+        }
+
+        .city-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            list-style: none;
+            padding: 0;
+        }
+
+        .city-list li {
+            font-size: 18px;
+            color: #333;
+            font-weight: 400;
+            text-align: center;
+            padding: 10px 0;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .city-list li:hover {
+            background-color: #003366;
+            color: white;
+            cursor: pointer;
+            transform: scale(1.05);
+        }
+
+        /* Адаптивність */
+        @media (max-width: 768px) {
+            .city-list {
+                grid-template-columns: repeat(2, 1fr); /* 2 колонки на менших екранах */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .city-list {
+                grid-template-columns: 1fr; /* Одна колонка на мобільних */
+            }
+        }
+
+        /* Новий блок з анімацією */
+        .animated-section {
+            background-color: #003366;
+            color: white;
+            padding: 50px 0;
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        .animated-section h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .animated-section p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .animated-section .image-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .animated-section .image-container img {
+            width: 300px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s, transform 1s;
+        }
+
+        .animated-section .image-container img.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Плавна анімація на скрол */
+        .animated-section.visible img {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Стилі для кнопки з іконкою */
+        .auth.button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #003366;
+            border: none;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .auth.button .icon {
+            width: 20px; /* ширина іконки */
+            height: 20px; /* висота іконки */
+            margin-right: 10px; /* відстань між іконкою та текстом */
+        }
+
+        .auth.button:hover {
+            background-color: #ffffff;
+            color: #003366;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">Готелі України</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Головна</a></li>
+                    <li><a href="about.html">Про нас</a></li>
+                    <li><a href="services.html">Послуги</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <h1>Готелі</h1>
+
+     
+
+        <!-- Готелі та Фото -->
+        <section class="hotel-list">
+            <div class="hotel-item">
+                <img src="фото/Київ_готелі.jpg" alt="Готель Сонце">
+                <p>Готель "Сонце" – затишок і комфорт.</p>
+                <p class="distance">Київ - 127 км</p>
+            </div>
+            <div class="hotel-item">
+                <img src="фото/Львів_готелі.jpg" alt="Готель Море">
+                <p>Готель "Море" – відпочинок на березі моря.</p>
+                <p class="distance">Львів - 200 км</p>
+            </div>
+            <div class="hotel-item">
+                <img src="фото/Одеса_готелі.jpg" alt="Готель Гори">
+                <p>Готель "Гори" – свіже повітря та спокій.</p>
+                <p class="distance">Одеса - 150 км</p>
+            </div>
+            <div class="hotel-item">
+                <img src="фото/Черкаси_готелі.jpg" alt="Готель Черкаси">
+                <p>Готель "Черкаси" – затишок в серці України.</p>
+                <p class="distance">Черкаси - 27 км</p>
+            </div>
+        </section>
+
+        <!-- Топові готелі -->
+        <section class="top-hotels">
+            <h2>Топові готелі України</h2>
+            <p>Обирайте найкращі варіанти для вашого відпочинку. Наші рекомендації:</p>
+            <div class="top-hotels-list">
+                <div class="top-hotel">
+                    <img src="фото/Топ_готель_1.jpg" alt="Топ Готель 1">
+                    <h3>Готель "Лазурний Берег"</h3>
+                    <p>Ідеальне місце для пляжного відпочинку на півдні України.</p>
+                </div>
+                <div class="top-hotel">
+                    <img src="фото/Топ_готель_2.jpg" alt="Топ Готель 2">
+                    <h3>Готель "Гірська Хата"</h3>
+                    <p>Затишок і природа Карпат для любителів гірських курортів.</p>
+                </div>
+                <div class="top-hotel">
+                    <img src="фото/Топ_готель_3.jpg" alt="Топ Готель 3">
+                    <h3>Готель "Середмістя"</h3>
+                    <p>Зручно розташований в центрі міста для урбаністичних мандрівників.</p>
+                </div>
+            </div>
+        </section>
+   <!-- Новий готель "Львів Велика Гора" -->
+        <section class="hotel-item">
+            <img src="фото/Львів1.jpg" alt="Готель Львів Велика Гора">
+            <p>Готель "Львів Велика Гора" - ідеальне місце для тих, хто шукає спокій серед природи, з неймовірними краєвидами та високим рівнем обслуговування.</p>
+            <p class="distance">Львів - 15 км</p>
+            <p>Забронюйте прямо зараз по найкращій ціні!</p>
+            <a href="hotel_booking.php" class="auth button">
+                <img src="фото/іконка_бронювання.png" alt="Забронювати зараз" class="icon"> Забронювати зараз
+            </a>
+        </section>
+        <!-- Міста в Україні -->
+        <section class="cities-container">
+            <div class="city-box">
+                <h3>Популярні міста України</h3>
+                <p>Оберіть ваше місто для перегляду готелів</p>
+            </div>
+
+            <ul class="city-list">
+                <li>Львів</li>
+                <li>Київ</li>
+                <li>Одеса</li>
+                <li>Яремче</li>
+                <li>Буковель</li>
+                <li>Чернівці</li>
+                <li>Івано-Франківськ</li>
+                <li>Дніпро</li>
+                <li>Тернопіль</li>
+                <li>Луцьк</li>
+                <li>Полтава</li>
+                <li>Ужгород</li>
+                <li>Хмельницький</li>
+                <li>Житомир</li>
+                <li>Рівне</li>
+                <li>Трускавець</li>
+                <li>Черкаси</li>
+                <li>Суми</li>
+                <li>Мукачево</li>
+                <li>Ворохта</li>
+            </ul>
+        </section>
+
+        <!-- Анімована секція -->
+        <section class="animated-section">
+            <h2>Чому обирають нас</h2>
+            <p>Ми надаємо лише кращі пропозиції для вашого комфортного відпочинку. Вибір за вами!</p>
+            <div class="image-container">
+                <img src="фото/Туризм_1.jpg" alt="Туризм 1">
+                <img src="фото/Туризм_2.jpg" alt="Туризм 2">
+                <img src="фото/Туризм_3.jpg" alt="Туризм 3">
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 Готелі України. Усі права захищені.</p>
+    </footer>
+
+    <script>
+        // Додати клас для анімації на скрол
+        window.addEventListener('scroll', function() {
+            const images = document.querySelectorAll('.animated-section img');
+            images.forEach(image => {
+                if (image.getBoundingClientRect().top < window.innerHeight) {
+                    image.classList.add('visible');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
